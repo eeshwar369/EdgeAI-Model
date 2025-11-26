@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "project": {
+    "name": "EdgeSense Respiratory Detection",
+    "description": "Multi-disease respiratory detection via breathing and cough acoustic biomarkers",
+    "owner": "EdgeSense Team",
+    "created": "2025-11-27"
+  },
+  "data": {
+    "inputType": "audio",
+    "sampleRate": 16000,
+    "windowSize": 3000,
+    "windowIncrease": 500,
+    "frequency": 16000
+  },
+  "dsp": {
+    "blocks": [
+      {
+        "type": "audio-mfcc",
+        "name": "MFCC",
+        "parameters": {
+          "numCoefficients": 40,
+          "frameLength": 0.025,
+          "frameStride": 0.010,
+          "numFilters": 128,
+          "fftLength": 2048,
+          "lowFrequency": 20,
+          "highFrequency": 8000,
+          "implementationVersion": 3
+        }
+      },
+      {
+        "type": "audio-mel-spectrogram",
+        "name": "Mel-Spectrogram",
+        "parameters": {
+          "numMelBins": 128,
+          "frameLength": 0.025,
+          "frameStride": 0.010,
+          "fftLength": 2048,
+          "lowFrequency": 20,
+          "highFrequency": 8000
+        }
+      }
+    ]
+  },
+  "learn": {
+    "modelType": "classification",
+    "labels": [
+      "normal",
+      "asthma",
+      "copd",
+      "pneumonia",
+      "bronchitis",
+      "tuberculosis",
+      "long_covid"
+    ],
+    "architecture": {
+      "type": "keras",
+      "layers": [
+        {
+          "type": "Conv2D",
+          "filters": 32,
+          "kernelSize": [3, 3],
+          "activation": "relu"
+        },
+        {
+          "type": "Conv2D",
+          "filters": 64,
+          "kernelSize": [3, 3],
+          "activation": "relu"
+        },
+        {
+          "type": "MaxPooling2D",
+          "poolSize": [2, 2]
+        },
+        {
+          "type": "LSTM",
+          "units": 128,
+          "returnSequences": false
+        },
+        {
+          "type": "Dense",
+          "units": 256,
+          "activation": "relu"
+        },
+        {
+          "type": "Dropout",
+          "rate": 0.5
+        },
+        {
+          "type": "Dense",
+          "units": 7,
+          "activation": "softmax"
+        }
+      ],
+      "optimizer": "adamw",
+      "learningRate": 0.0005,
+      "batchSize": 64,
+      "epochs": 100
+    }
+  },
+  "deployment": {
+    "targets": [
+      "raspberry-pi-4",
+      "android",
+      "esp32-s3"
+    ],
+    "optimization": {
+      "quantization": "int8",
+      "pruning": false,
+      "targetLatency": 50
+    }
+  }
+}

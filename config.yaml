@@ -1,0 +1,138 @@
+# EdgeSense Configuration File
+
+# Project Information
+project:
+  name: "EdgeSense Respiratory Detection"
+  version: "1.0.0"
+  description: "Multi-disease respiratory detection via acoustic biomarkers"
+
+# Audio Processing Parameters
+audio:
+  sample_rate: 16000
+  duration: 3.0  # seconds
+  window_size: 3000  # ms
+  window_increase: 500  # ms
+  normalize: true
+
+# Feature Extraction
+features:
+  mfcc:
+    n_mfcc: 40
+    n_fft: 2048
+    hop_length: 160
+    fmin: 20
+    fmax: 8000
+  
+  mel_spectrogram:
+    n_mels: 128
+    n_fft: 2048
+    hop_length: 160
+    fmin: 20
+    fmax: 8000
+  
+  spectral:
+    compute_centroid: true
+    compute_rolloff: true
+    compute_bandwidth: true
+    compute_zcr: true
+
+# Model Architecture
+model:
+  type: "crnn"  # Options: baseline_cnn, deep_cnn, crnn
+  input_shape: [null, null, 1]  # Auto-determined from features
+  num_classes: 7
+  
+  crnn:
+    conv_filters: [32, 64]
+    conv_kernel: [3, 3]
+    lstm_units: 128
+    dense_units: 256
+    dropout_rate: 0.5
+
+# Training Parameters
+training:
+  epochs: 100
+  batch_size: 64
+  learning_rate: 0.0005
+  optimizer: "adamw"  # Options: adam, adamw, sgd
+  
+  early_stopping:
+    patience: 15
+    monitor: "val_loss"
+  
+  reduce_lr:
+    patience: 5
+    factor: 0.5
+    min_lr: 0.0000001
+  
+  data_split:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    random_state: 42
+
+# Data Augmentation
+augmentation:
+  enabled: true
+  time_stretch: [0.9, 1.1]
+  pitch_shift: [-2, 2]
+  noise_level: 0.005
+
+# Edge Deployment
+deployment:
+  quantization:
+    enabled: true
+    type: "int8"  # Options: int8, float16
+  
+  pruning:
+    enabled: false
+    sparsity: 0.5
+  
+  target_devices:
+    - "raspberry-pi-4"
+    - "android"
+    - "esp32-s3"
+
+# Anomaly Detection
+anomaly_detection:
+  enabled: true
+  contamination: 0.1
+  n_estimators: 100
+
+# Inference
+inference:
+  confidence_threshold: 0.6
+  risk_levels:
+    low: 0.6
+    medium: 0.7
+    high: 0.8
+
+# Paths
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  models: "models"
+  results: "results"
+  logs: "logs"
+
+# Labels
+labels:
+  - "normal"
+  - "asthma"
+  - "copd"
+  - "pneumonia"
+  - "bronchitis"
+  - "tuberculosis"
+  - "long_covid"
+
+# Logging
+logging:
+  level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/edgesense.log"
+
+# Edge Impulse
+edge_impulse:
+  project_id: null  # Set after creating project
+  api_key: null  # Set from Edge Impulse dashboard
+  upload_category: "training"  # Options: training, testing

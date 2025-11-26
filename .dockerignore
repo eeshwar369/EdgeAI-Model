@@ -1,0 +1,56 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Data (too large for container)
+data/raw/
+data/processed/
+*.wav
+*.mp3
+
+# Models (mount as volume instead)
+models/*.h5
+models/*.pb
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+
+# Documentation (not needed in container)
+docs/
+*.md
+!README.md
+
+# CI/CD
+.github/
