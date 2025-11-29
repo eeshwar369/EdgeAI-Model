@@ -38,14 +38,11 @@ class RespiratoryInferenceEngine:
             self.anomaly_detector = RespiratoryAnomalyDetector()
             self.anomaly_detector.load(anomaly_detector_path)
         
+        # Updated to 3-class system
         self.label_names = [
             'Normal',
-            'Asthma',
-            'COPD',
-            'Pneumonia',
-            'Bronchitis',
-            'Tuberculosis',
-            'Long-COVID'
+            'Abnormal',
+            'Cough'
         ]
     
     def predict(

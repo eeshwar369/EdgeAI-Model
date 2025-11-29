@@ -40,7 +40,7 @@ features:
 model:
   type: "crnn"  # Options: baseline_cnn, deep_cnn, crnn
   input_shape: [null, null, 1]  # Auto-determined from features
-  num_classes: 7
+  num_classes: 3  # Updated to 3-class system
   
   crnn:
     conv_filters: [32, 64]
@@ -115,15 +115,11 @@ paths:
   results: "results"
   logs: "logs"
 
-# Labels
+# Labels (3-class system for realistic training)
 labels:
-  - "normal"
-  - "asthma"
-  - "copd"
-  - "pneumonia"
-  - "bronchitis"
-  - "tuberculosis"
-  - "long_covid"
+  - "normal"      # Normal breathing
+  - "abnormal"    # Wheezing, crackling, labored breathing
+  - "cough"       # Cough sounds
 
 # Logging
 logging:

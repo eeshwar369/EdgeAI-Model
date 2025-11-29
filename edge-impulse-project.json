@@ -47,12 +47,8 @@
     "modelType": "classification",
     "labels": [
       "normal",
-      "asthma",
-      "copd",
-      "pneumonia",
-      "bronchitis",
-      "tuberculosis",
-      "long_covid"
+      "abnormal",
+      "cough"
     ],
     "architecture": {
       "type": "keras",
@@ -89,7 +85,7 @@
         },
         {
           "type": "Dense",
-          "units": 7,
+          "units": 3,
           "activation": "softmax"
         }
       ],

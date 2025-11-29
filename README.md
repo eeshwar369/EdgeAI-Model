@@ -7,21 +7,21 @@ A machine learning system for detecting respiratory diseases through audio analy
 
 ## Features
 
-- **Multi-class classification**: Detects 7 different respiratory conditions
+- **Respiratory screening**: Classifies breathing patterns into normal, abnormal, and cough
 - **Edge deployment**: Runs on resource-constrained devices
 - **Real-time inference**: Low latency processing (<100ms)
 - **Multiple platforms**: Raspberry Pi, Android, ESP32 support
+- **Privacy-preserving**: All processing happens on-device
 
-## Supported Conditions
+## Classification Categories
 
-The system can classify the following respiratory patterns:
-- Normal breathing
-- Asthma
-- COPD (Chronic Obstructive Pulmonary Disease)
-- Pneumonia
-- Bronchitis
-- Tuberculosis
-- Long-COVID
+The system classifies respiratory audio into three categories:
+
+1. **Normal Breathing** - Healthy respiratory patterns
+2. **Abnormal Breathing** - Wheezing, crackling, or labored breathing indicating potential respiratory issues
+3. **Cough** - Cough sounds that may indicate respiratory conditions
+
+This 3-class system enables effective screening to identify individuals who may need medical follow-up.
 
 ## Quick Start
 
