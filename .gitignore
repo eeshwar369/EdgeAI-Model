@@ -80,9 +80,12 @@ tmp/
 temp/
 *.tmp
 
-# Documentation (keep only essential)
+# Internal documentation (not for judges)
+SUMMARY_FOR_YOU.md
+HACKATHON_SETUP.md
+EDGE_IMPULSE_GUIDE.md
+DEPLOYMENT.md
+QUICK_START.md
 *CHECKLIST*.md
 *COMPLETE*.md
 *GUIDE*.md
-!EDGE_IMPULSE_GUIDE.md
-!DEPLOYMENT.md
