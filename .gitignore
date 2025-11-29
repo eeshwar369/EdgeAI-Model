@@ -80,7 +80,7 @@ tmp/
 temp/
 *.tmp
 
-# Internal documentation (not for judges)
+# Internal documentation (not for judges) - LOCAL ONLY
 SUMMARY_FOR_YOU.md
 HACKATHON_SETUP.md
 EDGE_IMPULSE_GUIDE.md
@@ -88,6 +88,16 @@ DEPLOYMENT.md
 QUICK_START.md
 _LOCAL_GUIDE.txt
 JUDGES_FAQ.md
+ACTION_PLAN_NOW.txt
+GET_REAL_DATA_NOW.md
+EASIEST_SOLUTION.md
+WINNING_STRATEGY.md
+REALISTIC_APPROACH.md
+START_HERE_NOW.txt
+download_real_respiratory_data.py
+pivot_to_3_class.py
 *CHECKLIST*.md
 *COMPLETE*.md
 *GUIDE*.md
+*STRATEGY*.md
+*PLAN*.md
