@@ -79,3 +79,10 @@ htmlcov/
 tmp/
 temp/
 *.tmp
+
+# Documentation (keep only essential)
+*CHECKLIST*.md
+*COMPLETE*.md
+*GUIDE*.md
+!EDGE_IMPULSE_GUIDE.md
+!DEPLOYMENT.md
